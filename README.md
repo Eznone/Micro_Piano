@@ -1,6 +1,29 @@
 # Micro_Piano
 
+## O Teclado
+
+Os arquivos para o teclado são os seguintes:
+
+### BlackKeys_Ver3.stl e WhitekKeys_Ver3.stl
+
+- Contêm chaves que devem ser montadas no Keys_Base.stl.
+
+### Keys_Base.stl
+
+- Design inicial feito para furar as chaves durante as fases iniciais do projeto.
+
+### Roof_Base.stl
+
+- Feito para segurar os fios que completam a conexão das chaves através do uso de fio terra passando pela chave e a conexão sendo concluída através do contato no telhado.
+
+### Base_Structure.stl
+
+- Projetado para polir o teclado e ter estabilidade devido aos fios que passam por baixo do teclado, garantindo que as teclas voltem para cima após serem pressionadas.
+
+Tudo foi passado por uma impressora 3D para trazer o modelo do teclado.
+
 ## Usando venv
+
 - Cria venv usando Macbook `python3 -m venv .venv` ou Windows `python -m venv .venv`
 - Ativa o venv usando `source .venv\bin\activate` ou Windows `.venv\Scripts\activate`
 - Baixa os bibliotecas necessarios usando `pip3 install -r requirements.txt`
@@ -12,10 +35,12 @@
 O código no arquivo `partituras.py` é um script Python que cria uma interface gráfica (GUI) para um editor de partituras musicais usando a biblioteca `tkinter`. Aqui está um resumo das funcionalidades:
 
 ### Importações e Configuração:
+
 - Importa bibliotecas necessárias (`tkinter`, `tempfile`, `os`, `mido`, `pygame`).
 - Define variáveis globais para gerenciar a partitura.
 
 ### Manipulação de MIDI:
+
 - Funções para criar, exportar, importar e tocar arquivos MIDI:
   - `midi()`: Cria um arquivo MIDI a partir das notas.
   - `export_midi()`: Exporta o arquivo MIDI criado para o sistema de arquivos do usuário.
@@ -23,6 +48,7 @@ O código no arquivo `partituras.py` é um script Python que cria uma interface 
   - `import_midi()`: Importa um arquivo MIDI e desenha as notas na partitura.
 
 ### Gerenciamento de Notas e Partitura:
+
 - Funções para selecionar, posicionar e desenhar notas na partitura:
   - `select_note()`: Solicita ao usuário a seleção de um tipo de nota e nota musical.
   - `get_note_position()`: Obtém a posição vertical de uma nota com base na clave.
@@ -31,6 +57,7 @@ O código no arquivo `partituras.py` é um script Python que cria uma interface 
   - `draw_note_on_staff()`: Desenha uma nota musical ou pausa na partitura.
 
 ### Desenho da Partitura:
+
 - Funções para desenhar a partitura e lidar com redimensionamento:
   - `select_clef()`: Redesenha a partitura quando a clave é alterada.
   - `select_meter()`: Redesenha a partitura quando o compasso é alterado.
@@ -38,9 +65,30 @@ O código no arquivo `partituras.py` é um script Python que cria uma interface 
   - `resize_canvas()`: Redesenha a partitura quando o canvas é redimensionado.
 
 ### Configuração da GUI:
+
 - Configura a janela principal e os elementos da GUI:
   - Cria frames, canvas, botões e menus dropdown para interação do usuário.
   - Vincula eventos para redimensionamento e mudanças de seleção.
   - Inicializa o desenho da partitura.
 
 O script permite aos usuários criar, editar, exportar, importar e tocar partituras musicais de forma visual e interativa.
+
+## MicroTeclado.ino
+
+MicroTeclado.ino é um sketch para Arduino que configura e gerencia um teclado musical com botões e LEDs. Ele inclui os seguintes componentes principais:
+
+### Inicialização dos Botões:
+
+- Inicializa 12 objetos GFButton, cada um associado a um pino específico.
+
+### Inicialização dos LEDs:
+
+- Define arrays para LEDs vermelhos e verdes, cada um associado a pinos específicos.
+
+### Função de Configuração (setup):
+
+- Configura os pinos dos LEDs como saídas e define seu estado inicial como LOW.
+
+### Função de Loop (loop):
+
+- Verifica continuamente o estado dos botões, atualiza os LEDs com base nos botões pressionados e processa a entrada serial para controlar os LEDs.
