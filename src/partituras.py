@@ -2,6 +2,7 @@ import tkinter as tk
 import tempfile
 import os
 from tkinter import ttk, filedialog, messagebox, simpledialog
+import subprocess
 #pip install mido python-rtmidi
 
 #pip install pygame
@@ -77,7 +78,7 @@ def midi():
     mid.tracks.append(track)
 
     # Adiciona informações de BPM e compasso
-    bpm = 120
+    bpm = 125
     tempo = int(60000000 / bpm)  # Calcula o tempo em microssegundos por batida
     track.append(MetaMessage('set_tempo', tempo=tempo))  # Define o BPM
     track.append(MetaMessage('time_signature', numerator=time_per_mesaure, denominator=num_measures, clocks_per_click=24, notated_32nd_notes_per_beat=8))  # Define o compasso 4/4
@@ -395,6 +396,14 @@ def draw_partitura():
 def resize_canvas(event):
     draw_partitura()
 
+#Abre o jogo do gabriel
+def abrir_jogo():
+    root.destroy()
+    subprocess.run(["python", "OneDrive\\Desktop\\janks\\jogo_piano2.py"])
+
+
+
+
 # Configuração da janela principal
 root = tk.Tk()
 root.title("Editor de Partitura")
@@ -418,6 +427,7 @@ canvas.pack(fill=tk.BOTH, expand=True)
 canvas.bind("<Configure>", resize_canvas)  # Evento para redimensionamento
 
 tk.Button(toolbar_top, text="Pausa", command=pausa).pack(side=tk.LEFT, padx=2, pady=2)
+tk.Button(toolbar_top, text="Abrir Jogo", command=abrir_jogo).pack(side=tk.RIGHT, padx=2, pady=2 )
 # Bot para selecionar notas
 note_types = ["Semibreve", "Minima", "Seminima", "Colcheia", "Semicolcheia"]
 for note in note_types:

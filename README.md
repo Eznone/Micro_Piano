@@ -30,7 +30,7 @@ Tudo foi passado por uma impressora 3D para trazer o modelo do teclado.
 - Vai ter chance que teria que dar um refresh no ambiente de trabalho
 - Vai ter que baixar o seguinte para usar os fontes do partituras.py -> https://fonts.google.com/selection
 
-## Descrição do Código
+## partituras.py
 
 O código no arquivo `partituras.py` é um script Python que cria uma interface gráfica (GUI) para um editor de partituras musicais usando a biblioteca `tkinter`. Aqui está um resumo das funcionalidades:
 
@@ -92,3 +92,80 @@ MicroTeclado.ino é um sketch para Arduino que configura e gerencia um teclado m
 ### Função de Loop (loop):
 
 - Verifica continuamente o estado dos botões, atualiza os LEDs com base nos botões pressionados e processa a entrada serial para controlar os LEDs.
+
+## jogo_piano2.py
+
+O código a seguir é um script Python que integra Pygame, Mido e comunicação serial para criar um jogo didático de piano. Aqui está um resumo das funcionalidades:
+
+### Importações e Configuração:
+
+- Importa bibliotecas necessárias (`pygame`, `mido`, `rtmidi`, `time`, `os`, `subprocess`, `serial`).
+- Define funções para inicializar Pygame, MIDI e Arduino.
+
+### Manipulação de Arquivos MIDI:
+
+- `get_midi_files(directory)`: Retorna uma lista dos 5 primeiros arquivos MIDI na pasta.
+- `load_midi_file(file_path)`: Carrega um arquivo MIDI.
+- `get_midi_metadata(midi_file_path)`: Retorna o BPM e o compasso de um arquivo MIDI.
+- `play_midi_events_in_real_time(midi_out, midi_file, start_time, bpm_adjusted)`: Lê eventos do arquivo MIDI e retorna uma lista de eventos para tocar em tempo real.
+
+### Desenho da Interface:
+
+- `draw_piano_keys(screen, active_keys)`: Desenha as teclas do piano.
+- `draw_bpm_slider(screen, bpm)`: Desenha um controle deslizante para o BPM.
+- `draw_metronome_lines(screen, current_time, bpm)`: Desenha linhas do metrônomo.
+- `draw_toolbar(screen, midi_playing, midi_files=None)`: Desenha a barra de ferramentas.
+- `draw_submenu(screen, midi_file, progress_position)`: Desenha o submenu.
+
+### Interação com o Arduino:
+
+- `init_arduino()`: Inicializa a conexão com o Arduino via porta serial.
+- `send_notes_to_arduino(arduino, notes)`: Envia uma lista de notas para o Arduino.
+
+### Controle do Jogo:
+
+- `handle_keyboard_input(...)`: Lida com a entrada do teclado em tempo real para tocar notas.
+- `display_notes(...)`: Representação visual das notas a serem tocadas e notas atualmente pressionadas.
+
+### Função Principal:
+
+- `main()`: Inicializa Pygame, MIDI, Arduino e controla o loop principal do jogo.
+
+## backup.py
+
+O código a seguir é um script Python que integra Pygame, Mido e comunicação serial para criar um jogo didático de piano. Aqui está um resumo das funcionalidades:
+
+### Importações e Configuração:
+
+- Importa bibliotecas necessárias (`pygame`, `mido`, `rtmidi`, `time`, `os`, `subprocess`, `serial`).
+- Define funções para inicializar Pygame, MIDI e Arduino.
+
+### Manipulação de Arquivos MIDI:
+
+- `get_midi_files(directory)`: Retorna uma lista dos 5 primeiros arquivos MIDI na pasta.
+- `load_midi_file(file_path)`: Carrega um arquivo MIDI.
+
+### Configuração do MIDI e Arduino:
+
+- `init_midi()`: Inicializa a configuração MIDI e tenta abrir a porta "PianoVirtual".
+- `init_arduino()`: Inicializa a conexão com o Arduino via porta serial.
+- `send_notes_to_arduino(arduino, notes)`: Envia uma lista de notas para o Arduino.
+
+### Desenho da Interface:
+
+- `draw_piano_keys(screen, active_keys)`: Desenha as teclas do piano.
+- `draw_bpm_slider(screen, bpm)`: Desenha um controle deslizante para o BPM.
+- `draw_metronome_lines(screen, current_time, bpm)`: Desenha linhas do metrônomo.
+- `draw_toolbar(screen, midi_playing, midi_files=None)`: Desenha a barra de ferramentas.
+- `draw_submenu(screen, midi_file, progress_position)`: Desenha o submenu.
+
+### Controle do Jogo:
+
+- `handle_keyboard_input(...)`: Lida com a entrada do teclado em tempo real para tocar notas.
+- `display_notes(...)`: Representação visual das notas a serem tocadas e notas atualmente pressionadas.
+
+### Função Principal:
+
+- `main()`: Inicializa Pygame, MIDI, Arduino e controla o loop principal do jogo.
+
+> **Nota:** O arquivo `backup.py` foi criado apenas como um teste e não deve ser considerado o arquivo principal.
